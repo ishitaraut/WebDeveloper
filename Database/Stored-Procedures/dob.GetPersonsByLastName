@@ -1,0 +1,15 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROC [dbo].[GetPersonsByLastName] @NameToCheck nvarchar(30)
+AS
+    SET NOCOUNT ON; 
+
+    SELECT  PersonId ,
+            FirstName ,
+            LastName
+    FROM    dbo.PersonalRecords
+            INNER JOIN dbo.Persons ON Persons.PersonId = PersonalRecords.PersonalId
+    WHERE   LastName = @NameToCheck;
+GO
